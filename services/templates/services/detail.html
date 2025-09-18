@@ -1,0 +1,132 @@
+<!-- services/templates/services/detail.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ service.title }} - HydroWells{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <!-- Encabezado -->
+  <div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'service_list' %}">Servicios</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{ service.title }}</li>
+        </ol>
+      </nav>
+
+      <h1 class="display-5 fw-bold mb-3">{{ service.title }}</h1>
+
+      {% if service.short_description %}
+      <p class="lead text-muted">{{ service.short_description }}</p>
+      {% endif %}
+
+      <hr class="my-4">
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Contenido principal -->
+    <div class="col-lg-8">
+      {% if service.image %}
+      <img src="{{ service.image.url }}" class="img-fluid rounded shadow-sm mb-4" alt="{{ service.title }}"
+        style="width: 100%; height: 300px; object-fit: cover;">
+      {% endif %}
+
+      <!-- Descripción principal -->
+      {% if service.full_description %}
+      <div class="mb-4">
+        <h3 class="text-primary mb-3">Service Description</h3>
+        <div class="service-description">
+          {{ service.full_description|linebreaks }}
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Beneficio -->
+      {% if service.benefit %}
+      <div class="bg-light p-4 rounded mb-4">
+        <h4 class="text-primary mb-3"><i class="fas fa-star me-2"></i>Main Benefits</h4>
+        <p>{{ service.benefit }}</p>
+      </div>
+      {% endif %}
+
+      <!-- Requisitos -->
+      {% if service.requirements %}
+      <div class="mb-4">
+        <h4 class="text-primary mb-3"><i class="fas fa-list me-2"></i>Details and Requirements</h4>
+        <ul class="list-group list-group-flush">
+          {% for requirement in service.get_requirements_list %}
+          <li class="list-group-item border-0 px-0 py-2">
+            <i class="fas fa-check-circle text-success me-2"></i>{{ requirement }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Sidebar con CTA -->
+    <div class="col-lg-4">
+      <div class="card border-primary shadow-sm sticky-top" style="top: 20px;">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0"><i class="fas fa-headset me-2"></i>Do you need this service?</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Please contact us for a free, personalized quote.
+          </p>
+
+          <div class="d-grid gap-2">
+            <a href="{% url 'contact' %}?subject={{ service.title }}" class="btn btn-primary">
+              <i class="fas fa-file-contract me-2"></i>Get a Quote
+            </a>
+            <a href="tel:3015550123" class="btn btn-outline-primary">
+              <i class="fas fa-phone-alt me-2"></i>Call Now
+            </a>
+          </div>
+
+          <div class="mt-3 text-center">
+            <small class="text-muted">
+              <i class="fas fa-clock me-1"></i>Available 24/7 for emergencies
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Información adicional -->
+      <div class="card mt-4">
+        <div class="card-body">
+          <h6 class="card-title"><i class="fas fa-shield-alt me-2 text-primary"></i>Quality Guarantee</h6>
+          <p class="card-text">
+            <small>All of our services comply with Maryland state standards and come with a satisfaction
+              guarantee.</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .service-description p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .service-description h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    color: #0d6efd;
+  }
+
+  .service-description ul {
+    padding-left: 1.5rem;
+  }
+
+  .service-description li {
+    margin-bottom: 0.5rem;
+  }
+</style>
+{% endblock %}

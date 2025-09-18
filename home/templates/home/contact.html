@@ -1,0 +1,93 @@
+<!-- home/templates/home/contact.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us - HydroWells{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <!-- Formulario de contacto -->
+    <div class="col-md-6">
+      <h2 class="mb-4">Get in Touch</h2>
+
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="subject" class="form-label">Subject</label>
+          <input type="text" class="form-control" id="subject" name="subject" required>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+
+    <!-- Información de contacto y mapa -->
+    <div class="col-md-6">
+      <h4>Contact Information</h4>
+      <p><strong>HydroWells</strong></p>
+      <p>📍 Maryland, USA</p>
+      <p>📧 info@hydrowells.com</p>
+      <p>📱 (301) 555-0123</p>
+
+      <div class="mt-4">
+        <h5>Emergency Service</h5>
+        <p>Available 24/7 for urgent well pump repairs.</p>
+      </div>
+
+      <!-- Contenedor del mapa OpenStreetMap -->
+      <div class="mt-4">
+        <h5>Our Service Area</h5>
+        <div id="map" style="height: 300px; width: 100%; border-radius: 8px; border: 1px solid #ddd;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Leaflet.js CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<!-- Leaflet.js JavaScript -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  // Inicializar el mapa cuando se cargue la página
+  document.addEventListener('DOMContentLoaded', function () {
+    // Coordenadas aproximadas de Maryland
+    var maryland = [39.0458, -76.6413];
+
+    // Crear el mapa centrado en Maryland
+    var map = L.map('map').setView(maryland, 8);
+
+    // Agregar capa de mapas de OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Agregar marcador
+    L.marker(maryland).addTo(map)
+      .bindPopup('HydroWells Service Area<br>Maryland, USA')
+      .openPopup();
+  });
+</script>
+{% endblock %}

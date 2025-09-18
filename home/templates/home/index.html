@@ -1,11 +1,96 @@
+<!-- home/templates/home/index.html -->
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}HydroWells - Well Drilling & Pump Repair in Maryland{% endblock %}
 
 {% block content %}
-<div class="jumbotron text-center">
-  <h1 class="display-4">Exceptional, Punctual & Professional</h1>
-  <p class="lead">You deserve to have a professional who can install or repair any well pump system you need.</p>
-  <hr class="my-4">
-  <p>Need Help with a Well Emergency?</p>
-  <a class="btn btn-primary btn-lg" href="/services" role="button">View Services</a>
+
+<!-- Hero Section -->
+<div class="hero-section text-white text-center py-5"
+  style="background: url('{% static 'images/hero-bg3.jpg' %}') no-repeat center center; background-size: cover;">
+  <div class="container py-5">
+    <h1 class="display-4 fw-bold">Exceptional, Punctual & Professional</h1>
+    <p class="lead my-4">You deserve to have a professional who can install or repair any well pump system you need.</p>
+    <a class="btn btn-primary btn-lg me-2" href="{% url 'contact' %}">Get a Quote</a>
+    <a class="btn btn-outline-light btn-lg" href="{% url 'service_list' %}">Our Services</a>
+  </div>
 </div>
+
+<!-- Why Choose Us -->
+<div class="container my-5">
+  <h2 class="text-center mb-4">Why Choose HydroWells?</h2>
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <div class="p-3">
+        <i class="fas fa-clock fa-3x text-primary mb-3"></i> <!-- Necesitarás Font Awesome -->
+        <h5>24/7 Emergency Service</h5>
+        <p>We're available around the clock for urgent well pump repairs.</p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="p-3">
+        <i class="fas fa-cogs fa-3x text-primary mb-3"></i>
+        <h5>Expert Technicians</h5>
+        <p>Our team has years of experience in well drilling and pump systems.</p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="p-3">
+        <i class="fas fa-check-circle fa-3x text-primary mb-3"></i>
+        <h5>Licensed & Insured</h5>
+        <p>You can trust us to do the job right, safely and professionally.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Featured Services -->
+<div class="container my-5">
+  <h2 class="text-center mb-4">Our Professional Services</h2>
+  <p class="text-center text-muted mb-4">We offer a wide range of well drilling and pump repair services.</p>
+
+  {% if featured_services %}
+  <div class="row">
+    {% for service in featured_services %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        {% if service.icon %}
+        <div class="card-header text-center">
+          <i class="{{ service.icon }} fa-2x text-primary"></i>
+        </div>
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ service.title }}</h5>
+          <p class="card-text">{{ service.description|truncatewords:20 }}</p> <!-- Truncar descripción -->
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="text-center mt-3">
+    <a href="{% url 'service_list' %}" class="btn btn-outline-primary">View All Services</a>
+  </div>
+  {% else %}
+  <p class="text-center">No services available at the moment. <a href="{% url 'admin:services_service_add' %}">Add some
+      in the admin panel</a>.</p>
+  {% endif %}
+</div>
+
+
+<!-- Emergency Section -->
+<div class="bg-light py-5 my-5">
+  <div class="container text-center">
+    <h2 class="mb-3">Need Help with a Well Emergency?</h2>
+    <p class="lead mb-4">Whether you need new well pump equipment installed or an existing well repaired, we're here to
+      help.</p>
+    <a href="tel:3015550123" class="btn btn-danger btn-lg me-2"><i class="fas fa-phone-alt me-2"></i>Call Now: (301)
+      555-0123</a>
+    <a href="{% url 'contact' %}" class="btn btn-primary btn-lg"><i class="fas fa-envelope me-2"></i>Contact Us</a>
+  </div>
+</div>
+
+<!-- Service Area Map (opcional aquí o solo en contacto) -->
+<!-- Si decides ponerlo aquí, copia el div del mapa de contact.html -->
+
 {% endblock %}

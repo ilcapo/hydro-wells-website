@@ -1,0 +1,32 @@
+<!-- services/templates/services/list.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Professional Services - HydroWells{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <h1 class="text-center mb-4">Our Professional Services.</h1>
+  <p class="text-center text-muted mb-5">We are specialists in well drilling, pump repair, and constant pressure
+    systems.</p>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for service in services %}
+    <div class="col">
+      <!-- Tarjeta de servicio con imagen -->
+      <div class="card h-100 shadow-sm border-light">
+        {% if service.image %}
+        <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}"
+          style="height: 200px; object-fit: cover;">
+        {% endif %}
+        <div class="card-body p-4">
+          <h5 class="card-title fw-bold mb-3">{{ service.title }}</h5>
+          <p class="card-text text-muted">{{ service.short_description }}</p>
+          <a href="{% url 'service_detail' service.id %}" class="btn btn-outline-primary btn-sm mt-2">See more</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+/* static/css/style.css */
+
+/* Hero Section */
+.hero-section {
+  min-height: 80vh;
+  /* Ocupa al menos el 80% de la altura de la pantalla */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+.hero-section .btn {
+  margin-top: 1rem;
+}
+
+/* Asegurar que el navbar se vea bien sobre el hero */
+.navbar {
+  z-index: 1000;
+  /* Asegura que esté por encima */
+}
+
+/* Opcional: Estilo para el área de emergencias */
+.bg-light {
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+}
