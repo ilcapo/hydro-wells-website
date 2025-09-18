@@ -1,10 +1,16 @@
-<!-- home/templates/home/index.html -->
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}HydroWells - Well Drilling & Pump Repair in Maryland{% endblock %}
+
+{% block meta_description %}{{ meta_description }}{% endblock %}
+{% block meta_keywords %}{{ meta_keywords }}{% endblock %}
 
 {% block content %}
+
+<meta name="description"
+  content="Professional well drilling and pump repair services in Maryland. Emergency 24/7 support, licensed experts, and quality guaranteed. Get a free quote today!">
+<meta name="keywords"
+  content="well drilling Maryland, pump repair Maryland, water well services, emergency well service, licensed well driller">
 
 <!-- Hero Section -->
 <div class="hero-section text-white text-center py-5"

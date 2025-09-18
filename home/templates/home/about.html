@@ -2,7 +2,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}About Us - HydroWells{% endblock %}
+{% block title %}{{ meta_title }}{% endblock %}
+{% block meta_description %}{{ meta_description }}{% endblock %}
+{% block meta_keywords %}{{ meta_keywords }}{% endblock %}
+
 
 {% block content %}
 <!-- Hero Section -->
