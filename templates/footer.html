@@ -5,6 +5,10 @@
     <div class="row">
       <!-- Logo y descripción -->
       <div class="col-md-4 mb-3">
+        <!--<div class="d-flex align-items-center mb-2">
+          <img src="{% static 'images/logo.svg' %}" alt="HydroWells Logo" width="30" height="30" class="me-2">
+          <h5 class="mb-0">HydroWells</h5>
+        </div>-->
         <img src="{% static 'images/logo/hydro-wells-logo.png' %}" alt="Logo HydroWells" height="50" class="mb-3">
         <p>Professional Well Drilling and Pump Repair Services in Maryland.</p>
         <p><i class="fas fa-map-marker-alt me-2"></i> Maryland, USA</p>
@@ -17,8 +21,9 @@
         <h5>Quick Links</h5>
         <ul class="list-unstyled">
           <li><a href="{% url 'home' %}" class="text-white">Home</a></li>
+          <li><a href="{% url 'about' %}" class="text-white">About</a></li>
           <li><a href="{% url 'service_list' %}" class="text-white">Services</a></li>
-          <li><a href="{% url 'faq' %}" class="text-white">faq</a></li>
+          <li><a href="{% url 'faq' %}" class="text-white">Faq</a></li>
           <li><a href="{% url 'blog_list' %}" class="text-white">Blog</a></li>
           <li><a href="{% url 'contact' %}" class="text-white">Contact</a></li>
         </ul>

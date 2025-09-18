@@ -21,7 +21,7 @@
     <div class="col-lg-3">
       <div class="card border-0 shadow-sm">
         <div class="card-header bg-primary text-white py-3">
-          <h5 class="mb-0"><i class="fas fa-tags me-2"></i>Categorías</h5>
+          <h5 class="mb-0"><i class="fas fa-tags me-2"></i>Categories</h5>
         </div>
         <div class="list-group list-group-flush">
           <a href="{% url 'blog_list' %}"
@@ -43,9 +43,9 @@
           <div class="mb-3">
             <i class="fas fa-question-circle fa-2x text-primary"></i>
           </div>
-          <h5 class="card-title">¿Tiene una pregunta?</h5>
-          <p class="card-text">Nuestros expertos están listos para ayudarle.</p>
-          <a href="{% url 'contact' %}" class="btn btn-primary w-100">Contáctenos</a>
+          <h5 class="card-title">Do you have a question?</h5>
+          <p class="card-text">Our experts are ready to help you.</p>
+          <a href="{% url 'contact' %}" class="btn btn-primary w-100">Contact us</a>
         </div>
       </div>
     </div>
@@ -97,8 +97,8 @@
         <div class="col-12">
           <div class="text-center py-5">
             <i class="fas fa-newspaper fa-3x text-muted mb-3"></i>
-            <h3 class="mb-3">No hay artículos disponibles</h3>
-            <p class="text-muted">Pronto publicaremos nuevo contenido interesante.</p>
+            <h3 class="mb-3">No articles available.</h3>
+            <p class="text-muted">We will publish new interesting content soon.</p>
           </div>
         </div>
         {% endfor %}
@@ -112,7 +112,7 @@
           <li class="page-item">
             <a class="page-link rounded"
               href="?page={{ page_obj.previous_page_number }}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}">
-              <i class="fas fa-chevron-left me-1"></i>Anterior
+              <i class="fas fa-chevron-left me-1"></i>Previous
             </a>
           </li>
           {% endif %}

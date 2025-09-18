@@ -26,3 +26,27 @@
   border-top: 1px solid #dee2e6;
   border-bottom: 1px solid #dee2e6;
 }
+
+/* Logo en navbar */
+.navbar-brand {
+  font-size: 1.4rem;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+}
+
+.navbar-brand img {
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover img {
+  transform: rotate(5deg);
+}
+
+/* Logo en footer */
+.footer-logo {
+  filter: brightness(0) invert(1);
+  /* Hace el logo blanco para fondo oscuro */
+}
