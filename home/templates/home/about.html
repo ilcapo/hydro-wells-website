@@ -142,6 +142,99 @@
   </div>
 </div>
 
+<!-- Reemplazar la sección de testimonios estáticos con esta versión dinámica -->
+<!-- <div class="bg-dark text-white py-5 my-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Lo que Dicen Nuestros Clientes</h2>
+    <div class="row">
+      {% for testimonial in testimonials %}
+      <div class="col-md-4 mb-4">
+        <div class="card bg-secondary h-100">
+          <div class="card-body">
+            <p class="card-text">"{{ testimonial.testimonial_text }}"</p>
+            <footer class="blockquote-footer text-white">
+              {{ testimonial.name }}, {{ testimonial.location }}
+            </footer>
+            <div class="mt-2">
+              {% for i in "12345"|make_list %}
+              {% if forloop.counter <= testimonial.rating %} <span class="text-warning">★</span>
+                {% else %}
+                <span class="text-muted">☆</span>
+                {% endif %}
+                {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12">
+        <p class="text-center">Aún no hay testimonios publicados. ¡Sé el primero en compartir tu experiencia!</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>-->
+
+<!-- Agregar después de la sección de testimonios actuales -->
+<!--<div class="container my-5">
+  <h2 class="text-center mb-4">Comparte tu Experiencia</h2>
+  <p class="text-center text-muted mb-4">¡Nos encantaría conocer tu experiencia con HydroWells!</p>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <form method="post" class="p-4 border rounded">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="name" class="form-label">Nombre Completo</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="location" class="form-label">Ubicación (Ciudad)</label>
+          <input type="text" class="form-control" id="location" name="location" required>
+        </div>
+        <div class="mb-3">
+          <label for="testimonial" class="form-label">Tu Testimonio</label>
+          <textarea class="form-control" id="testimonial" name="testimonial" rows="4" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="rating" class="form-label">Calificación</label>
+          <select class="form-select" id="rating" name="rating" required>
+            <option value="">Selecciona...</option>
+            <option value="5">★★★★★ 5 Estrellas</option>
+            <option value="4">★★★★☆ 4 Estrellas</option>
+            <option value="3">★★★☆☆ 3 Estrellas</option>
+            <option value="2">★★☆☆☆ 2 Estrellas</option>
+            <option value="1">★☆☆☆☆ 1 Estrella</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar Testimonio</button>
+      </form>-->
+
+<!-- Mostrar mensajes -->
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show mt-3" role="alert">
+  {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+{% endfor %}
+{% endif %}
+</div>
+</div>
+</div>
+
+<!-- Mensaje de éxito -->
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success mt-3" role="alert">
+  {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+</div>
+</div>
+</div>
+
 <!-- The Team -->
 <div class="container my-5">
   <h2 class="text-center mb-5">The Heart of HydroWells</h2>
@@ -185,7 +278,7 @@
     <h2 class="mb-3">Ready to Experience the HydroWells Difference?</h2>
     <p class="lead mb-4">Contact us for a free, no-obligation consultation.</p>
     <div class="d-flex justify-content-center gap-3 flex-wrap">
-      <a href="tel:3015550123" class="btn btn-light btn-lg">
+      <a href="tel:+1 301-393-7090" class="btn btn-light btn-lg">
         <i class="fas fa-phone-alt me-2"></i>CALL NOW
       </a>
       <a href="{% url 'contact' %}" class="btn btn-outline-light btn-lg">

@@ -34,3 +34,28 @@ class Service(models.Model):
         if self.requirements:
             return [req.strip() for req in self.requirements.split('\n') if req.strip()]
         return []
+    
+    class Meta:
+        verbose_name = "Servicio"
+        verbose_name_plural = "Servicios"
+
+
+# 
+class Testimonial(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Nombre")
+    location = models.CharField(max_length=100, verbose_name="Ubicación")
+    testimonial_text = models.TextField(verbose_name="Testimonio")
+    rating = models.IntegerField(
+        choices=[(i, f"{'★' * i}") for i in range(1, 6)], 
+        verbose_name="Calificación"
+    )
+    approved = models.BooleanField(default=False, verbose_name="Aprobado")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
+
+    class Meta:
+        verbose_name = "Testimonio"
+        verbose_name_plural = "Testimonios"
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.name} - {self.rating} estrellas"

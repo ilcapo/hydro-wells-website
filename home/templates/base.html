@@ -1,12 +1,20 @@
 <!-- home/templates/home/blog_detail.html -->
 {% extends 'base.html' %}
 {% load static %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="{% static 'favicon/favicon.ico' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
 
 {% block title %}{{ meta_title }}{% endblock %}
 {% block meta_description %}{{ meta_description }}{% endblock %}
 {% block meta_keywords %}{{ meta_keywords }}{% endblock %}
 
 {% block content %}
+
 <div class="container my-5">
   <!-- Breadcrumb -->
   <nav aria-label="breadcrumb">

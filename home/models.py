@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 import logging
 
+
 class BlogCategory(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)

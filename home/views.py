@@ -6,6 +6,8 @@ from django.contrib import messages
 from services.models import Service
 from django.core.paginator import Paginator
 from .models import BlogPost, BlogCategory
+from services.models import Testimonial
+
 
 def index(request):
     # Obtener los primeros 3 servicios para mostrar en la home
@@ -74,6 +76,48 @@ def contact_view(request):
 
 
 def about_view(request):
+    if request.method == 'POST':
+        # Aquí capturas los datos
+        name = request.POST.get('name')
+        location = request.POST.get('location')
+        testimonial_text = request.POST.get('testimonial')
+        rating = request.POST.get('rating')
+       # Validar que todos los campos estén presentes
+        if name and location and testimonial_text and rating:
+            try:
+                # Crear y guardar el testimonio
+                testimonial = Testimonial(
+                    name=name,
+                    location=location,
+                    testimonial_text=testimonial_text,
+                    rating=int(rating),
+                    approved=False  # Por defecto no aprobado
+                )
+                testimonial.save()
+                
+                # Mostrar mensaje de éxito
+                messages.success(
+                    request, 
+                    '¡Gracias por tu testimonio! Lo revisaremos pronto.'
+                )
+            except ValueError:
+                messages.error(
+                    request, 
+                    'Hubo un error con la calificación. Por favor, inténtalo de nuevo.'
+                )
+        else:
+            messages.error(
+                request, 
+                'Por favor, completa todos los campos del formulario.'
+            )
+        
+        # Opción 1: Guardar en base de datos (necesitas crear un modelo)
+        # Opción 2: Enviar por correo
+        # Opción 3: Guardar en un archivo (temporal)
+        
+        # Por ahora, solo mostramos un mensaje
+        messages.success(request, '¡Gracias por tu testimonio! Lo revisaremos pronto.')
+        return redirect('about') # Redirige a la misma página
     # Diccionario de traducciones
     translations = {
         'es': {
